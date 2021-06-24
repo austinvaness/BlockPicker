@@ -3,9 +3,6 @@ using Sandbox.Game;
 using Sandbox.Game.Entities;
 using Sandbox.Game.Entities.Cube;
 using Sandbox.Game.Gui;
-using Sandbox.ModAPI;
-using Sandbox.ModAPI.Interfaces;
-using System.Collections.Generic;
 using System.Reflection;
 using VRage.Game.Components;
 using VRage.Input;
@@ -13,8 +10,6 @@ using VRage.Utils;
 using VRageMath;
 using Sandbox.Game.World;
 using Sandbox;
-using System.Text;
-using System;
 
 namespace avaness.BlockPicker
 {
@@ -58,7 +53,6 @@ namespace avaness.BlockPicker
                     {
                         UpdateGizmo(gizmo, cubeBlock);
                         return;
-
                     }
                 }
             }
@@ -74,7 +68,7 @@ namespace avaness.BlockPicker
             {
                 MySession.Static.LocalHumanPlayer.ChangeOrSwitchToColor(cubeBlock.ColorMaskHSV);
                 MyStringHash skinSubtypeId = cubeBlock.SkinSubtypeId;
-                MySession.Static.LocalHumanPlayer.BuildArmorSkin = ((skinSubtypeId != MyStringHash.NullOrEmpty) ? skinSubtypeId.ToString() : string.Empty);
+                MySession.Static.LocalHumanPlayer.BuildArmorSkin = (skinSubtypeId == MyStringHash.NullOrEmpty ? string.Empty : skinSubtypeId.ToString());
             }
         }
 
@@ -94,7 +88,7 @@ namespace avaness.BlockPicker
             if (mode > Modes.BLOCK_COLOR)
                 mode = Modes.BLOCK;
 
-            string s;
+            string s = "";
             switch (mode)
             {
                 case Modes.BLOCK:
@@ -105,7 +99,7 @@ namespace avaness.BlockPicker
                     break;
             }
 
-            MyAPIGateway.Utilities.ShowMessage("[BlockPicker]", "Block picker mode set to: " + s);
+            MyHud.Chat.ShowMessage("[BlockPicker]", "Block picker mode set to: " + s);
         }
 
     }
