@@ -62,7 +62,7 @@ namespace avaness.BlockPicker
         {
             // When the primary GUI block of the selected block's variant group
             // is set before the selected block, the user can scroll between variants.
-            var guiVariant = cubeBlock.BlockDefinition.BlockVariantsGroup.PrimaryGUIBlock;
+            var guiVariant = cubeBlock.BlockDefinition.BlockVariantsGroup?.PrimaryGUIBlock;
             if (guiVariant != null)
                 MyCubeBuilder.Static.CubeBuilderState.UpdateCubeBlockDefinition(guiVariant.Id, gizmo.SpaceDefault.m_localMatrixAdd);
 
